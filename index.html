@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Three.js + GLB + Weather (City Picker & Force Snow)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css">
+
+  <!-- OpenWeather API Key (demo uses frontend; for secrecy use a backend proxy) -->
+  <meta name="owm-api-key" content="d98e095e34bf78d3333c06b310b9318e">
+
+  <!-- import map: three & examples from CDN -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/examples/jsm/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <canvas id="c"></canvas>
+
+  <!-- HUD: city picker + force snow -->
+  <div class="hud">
+    <div class="row">
+      <label for="citySelect">City</label>
+      <select id="citySelect" title="Choose a city">
+        <option value="Shanghai,CN">Shanghai</option>
+        <option value="St. Louis,US">St. Louis</option>
+        <option value="New York,US">New York</option>
+        <option value="San Francisco,US" selected>San Francisco</option>
+        <option value="Tokyo,JP">Tokyo</option>
+      </select>
+      <button id="refreshBtn" title="Refresh weather">Refresh</button>
+    </div>
+
+    <div class="row force-snow">
+      <label class="toggle">
+        <input type="checkbox" id="forceSnowChk">
+        <span>❄ Force Snow</span>
+      </label>
+      <label class="range-wrap">
+        <span>Snow Intensity</span>
+        <input type="range" id="snowIntensity" min="0.1" max="1.5" step="0.05" value="0.8" disabled>
+      </label>
+    </div>
+
+    <div id="status">Syncing weather…</div>
+  </div>
+
+  <div class="label">Drag to rotate. Use the top-right controls to change city or force snow.</div>
+
+  <script type="module" src="./sketch.js"></script>
+</body>
+</html>
